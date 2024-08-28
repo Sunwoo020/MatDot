@@ -21,20 +21,20 @@ export default function NavigationBar() {
   ];
 
   return (
-    <div className="relative">
-      <div className="flex flex-row space-y-2">
+    <div className="relative h-24">
+      <div className="flex flex-row space-y-2 ">
         {MainHeaderItems.map((item, index) => (
           <div
             key={index}
-            className="relative"
+            className="relative m-2"
             onMouseEnter={() => setActiveMenu(item.title)}
             onMouseLeave={() => setActiveMenu(null)}
           >
-            <div className="flex items-center justify-center w-36 h-28 p-2 hover:bg-gray-200 rounded-md cursor-pointer">
+            <div className="flex m-0 items-center justify-center w-36 h-24 p-2 hover:bg-gray-200 rounded-md cursor-pointer">
               {item.icon}
             </div>
             <div
-              className={`absolute left-0 mt-2 w-36 bg-white shadow-lg rounded-md overflow-hidden transition-all duration-400 ease-in-out transform ${
+              className={`absolute left-0 w-36 bg-white shadow-lg rounded-md overflow-hidden transition-all duration-400 ease-in-out transform ${
                 activeMenu === item.title
                   ? "max-h-60 opacity-100"
                   : "max-h-0 opacity-0"

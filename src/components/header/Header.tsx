@@ -1,18 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import NavigationBar from "./NavigationBar";
-import MatDotLogo from "../../../public/assets/logo/MatDotLogo.png";
+import MatDotLogo from "@assets/logo/MatDotLogo.png";
+import SignInButton from "@components/sign/utils/SignInBtn";
+import SignUpButton from "@components/sign/utils/SignUpBtn";
+import SignOutButton from "@components/sign/utils/SignOutBtn";
 
 export default function Header() {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row h-24">
       <Link href="/">
-        <div className="flex items-center ml-8 mr-8 cursor-pointer">
+        <div className="flex items-center ml-12 w-full h-full cursor-pointer ">
           <Image src={MatDotLogo} alt="MatDot Logo" width={120} height={120} />
         </div>
       </Link>
-      <div className="flex flex-row">
+      <div className="flex flex-row w-full justify-center">
         <NavigationBar />
+      </div>
+      <div className="flex mr-4 flex-row w-full justify-end">
+        <SignInButton />
+        <SignUpButton />
       </div>
     </div>
   );
