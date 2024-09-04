@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import NavigationBar from "./NavigationBar";
@@ -5,8 +6,11 @@ import MatDotLogo from "@assets/logo/MatDotLogo.png";
 import SignInButton from "@components/sign/utils/SignInBtn";
 import SignUpButton from "@components/sign/utils/SignUpBtn";
 import SignOutButton from "@components/sign/utils/SignOutBtn";
+import { useSession } from "next-auth/react";
 
 export default function Header() {
+  const { data: session } = useSession();
+
   return (
     <div className="flex flex-row h-24">
       <Link href="/">
@@ -18,8 +22,14 @@ export default function Header() {
         <NavigationBar />
       </div>
       <div className="flex mr-4 flex-row w-full justify-end">
-        <SignInButton />
-        <SignUpButton />
+        {session ? (
+          <SignOutButton />
+        ) : (
+          <>
+            <SignInButton />
+            <SignUpButton />
+          </>
+        )}
       </div>
     </div>
   );

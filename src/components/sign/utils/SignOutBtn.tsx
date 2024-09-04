@@ -1,5 +1,5 @@
 "use client";
-import Btn from "@components/common/DefaultBtn";
+import AuthButton from "./AuthBtn";
 import { signOut } from "next-auth/react";
 
 export default function SignOut() {
@@ -8,13 +8,6 @@ export default function SignOut() {
       await signOut({ redirect: true, callbackUrl: "/" });
     } catch (error) {}
   };
-  return (
-    <Btn
-      label="Sign Out"
-      onClick={handleSignOut}
-      type="submit"
-      variant="primary"
-      size="small"
-    />
-  );
+
+  return <AuthButton label="Sign Out" onClick={handleSignOut} />;
 }

@@ -25,10 +25,9 @@ export default function DefaultBtn({
     large: "px-6 py-3 text-lg",
   };
   const variantStyles = {
-    primary: "text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500",
-    secondary:
-      "text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-gray-400",
-    danger: "text-white bg-red-600 hover:bg-red-700 focus:ring-red-500",
+    primary: "text-white hover:bg-blue-200 focus:ring-blue-500 rounded-2xl",
+    secondary: "text-gray-700  hover:bg-gray-300 focus:ring-gray-400",
+    danger: "text-white  hover:bg-red-700 focus:ring-red-500",
   };
 
   return (

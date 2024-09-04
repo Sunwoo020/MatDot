@@ -32,7 +32,6 @@ const handler = NextAuth({
           }
         );
         if (data) {
-          // accessToken을 포함한 사용자 객체 반환
           return { ...data, accessToken: data.accessToken };
         } else {
           return null;

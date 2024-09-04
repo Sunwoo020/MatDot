@@ -5,7 +5,7 @@ import SocialSignInBtn from "../utils/SocialSignInBtn";
 import Input from "@components/common/DefaultInput";
 import Btn from "@components/common/DefaultBtn";
 
-export default function LoginForm() {
+export default function SigninForm() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data: FieldValues) => {
