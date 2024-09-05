@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import NavigationBar from "./NavigationBar";
 import MatDotLogo from "@assets/logo/MatDotLogo.png";
-import SignInButton from "@components/sign/utils/SignInBtn";
-import SignUpButton from "@components/sign/utils/SignUpBtn";
-import SignOutButton from "@components/sign/utils/SignOutBtn";
+import {
+  SignInBtn,
+  SignOutBtn,
+  SignUpBtn,
+} from "@components/sign/utils/SignBtn";
 import { useSession } from "next-auth/react";
 
 export default function Header() {
@@ -23,11 +25,11 @@ export default function Header() {
       </div>
       <div className="flex mr-4 flex-row w-full justify-end">
         {session ? (
-          <SignOutButton />
+          <SignOutBtn />
         ) : (
           <>
-            <SignInButton />
-            <SignUpButton />
+            <SignInBtn />
+            <SignUpBtn />
           </>
         )}
       </div>
