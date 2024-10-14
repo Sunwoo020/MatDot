@@ -1,18 +1,6 @@
-import { UseFormRegister, FieldValues } from "react-hook-form";
+import * as Type from "./util/interface";
 
-interface InputProps {
-  label?: string;
-  placeholder?: string;
-  type?: "text" | "password" | "email" | "number" | "url";
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  errorMessage?: string;
-  className?: string;
-  register?: UseFormRegister<FieldValues>;
-  name?: string;
-}
-
-const Input: React.FC<InputProps> = ({
+const Input: React.FC<Type.InputProps> = ({
   label,
   placeholder = "",
   type = "text",

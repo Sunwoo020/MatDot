@@ -1,11 +1,5 @@
+import { footerLinks } from "./util/footerLinks";
 export default function Footer() {
-  const footerLinks = [
-    { title: "About Us", path: "/about" },
-    { title: "Contact", path: "/contact" },
-    { title: "Privacy Policy", path: "/privacy" },
-    { title: "Terms of Service", path: "/terms" },
-  ];
-
   return (
     <footer className=" text-white py-4">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">

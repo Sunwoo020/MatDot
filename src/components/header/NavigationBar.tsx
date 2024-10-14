@@ -1,29 +1,15 @@
 "use client";
 import { useState } from "react";
-import { subNavigationListProps } from "./util/subNavigationList/interface";
-import { subNavigationList } from "./util/subNavigationList";
-import { mainNavigationListProps } from "./util/mainNavigationList/interface";
-import { mainNavigationList } from "./util/mainNavigationList";
+import * as Main from "./util/mainNavigationList";
+import * as Sub from "./util/subNavigationList";
 
 export default function NavigationBar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
-  const MainHeaderItems: mainNavigationListProps<mainNavigationList>[] = [
-    { title: "맛집", icon: "맛집" },
-    { title: "추천", icon: "추천" },
-    { title: "리스트", icon: "리스트" },
-  ];
-
-  const SubheaderItems: subNavigationListProps<subNavigationList>[] = [
-    { title: "요즘 뜨는 맛집", icon: "요즘 뜨는 맛집", path: "/popular" },
-    { title: "지역별 맛집", icon: "지역별 맛집", path: "/region" },
-    { title: "내 맛집", icon: "내 맛집", path: "/my" },
-  ];
-
   return (
     <div className="relative h-24">
       <div className="flex flex-row space-y-2 ">
-        {MainHeaderItems.map((item, index) => (
+        {Main.MainHeaderItems.map((item, index) => (
           <div
             key={index}
             className="relative m-2"
@@ -41,7 +27,7 @@ export default function NavigationBar() {
               }`}
               style={{ transitionProperty: "max-height, opacity" }}
             >
-              {SubheaderItems.map((subItem, subIndex) => (
+              {Sub.SubheaderItems.map((subItem, subIndex) => (
                 <a
                   key={subIndex}
                   href={subItem.path}
