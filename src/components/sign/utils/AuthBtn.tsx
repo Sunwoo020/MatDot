@@ -11,13 +11,13 @@ interface AuthButtonProps {
   size?: "small" | "medium" | "large";
 }
 
-export default function AuthButton({
+export const AuthButton = ({
   label,
   onClick,
   type = "submit",
   variant = "primary",
   size = "small",
-}: AuthButtonProps) {
+}: AuthButtonProps) => {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
@@ -41,4 +41,4 @@ export default function AuthButton({
       size={size}
     />
   );
-}
+};

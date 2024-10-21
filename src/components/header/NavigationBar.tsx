@@ -27,7 +27,7 @@ export default function NavigationBar() {
               }`}
               style={{ transitionProperty: "max-height, opacity" }}
             >
-              {Sub.SubheaderItems.map((subItem, subIndex) => (
+              {Sub.SubHeaderItems.map((subItem, subIndex) => (
                 <a
                   key={subIndex}
                   href={subItem.path}

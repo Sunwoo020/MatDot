@@ -1,6 +1,6 @@
 import * as Type from "./util/interface";
 
-const Input: React.FC<Type.InputProps> = ({
+export default function Input({
   label,
   placeholder = "",
   type = "text",
@@ -10,7 +10,7 @@ const Input: React.FC<Type.InputProps> = ({
   className = "",
   register,
   name,
-}) => {
+}: Type.InputProps) {
   return (
     <div className={`w-full ${className}`}>
       {label && (
@@ -31,6 +31,4 @@ const Input: React.FC<Type.InputProps> = ({
       )}
     </div>
   );
-};
-
-export default Input;
+}

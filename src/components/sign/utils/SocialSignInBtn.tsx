@@ -4,10 +4,10 @@ import {
   socialProviders,
 } from "./interface/interface";
 
-const SocialSignInButton: React.FC<SocialSignInButtonProps> = ({
+export const SocialSignInButton = ({
   provider,
   onClick,
-}) => {
+}: SocialSignInButtonProps) => {
   const { text, color, icon, fontColor } = socialProviders[provider];
 
   return (
@@ -24,5 +24,3 @@ const SocialSignInButton: React.FC<SocialSignInButtonProps> = ({
     </div>
   );
 };
-
-export default SocialSignInButton;
