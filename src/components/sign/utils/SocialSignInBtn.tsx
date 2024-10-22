@@ -1,7 +1,7 @@
 "use client";
 import {
-  SocialSignInButtonProps,
   socialProviders,
+  SocialSignInButtonProps,
 } from "./interface/interface";
 
 export const SocialSignInBtn = ({
@@ -11,16 +11,13 @@ export const SocialSignInBtn = ({
   const { text, color, icon, fontColor } = socialProviders[provider];
 
   return (
-    <div
-      className="flex flex-col items-center justify-start w-full pb-2 h-12 rounded-xl mb-2"
+    <button
       style={{ backgroundColor: color, color: fontColor }}
       onClick={onClick}
+      className="flex items-center p-2 rounded-md w-full mb-2"
     >
-      <img
-        className="object-contain h-12 rounded-xl"
-        src={icon.src}
-        alt={text}
-      />
-    </div>
+      <img src={icon.src} alt={`${provider} logo`} className="w-6 h-6 mr-2" />
+      {text}
+    </button>
   );
 };
