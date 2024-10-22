@@ -1,7 +1,7 @@
 "use client";
 import { signIn } from "next-auth/react";
 import { FieldValues, useForm } from "react-hook-form";
-import SocialSignInBtn from "../utils/SocialSignInBtn";
+import { SocialSignInBtn } from "../utils/SocialSignInBtn";
 import Input from "@components/common/DefaultInput";
 import Btn from "@components/common/DefaultBtn";
 

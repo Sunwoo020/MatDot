@@ -4,7 +4,7 @@ import {
   socialProviders,
 } from "./interface/interface";
 
-export const SocialSignInButton = ({
+export const SocialSignInBtn = ({
   provider,
   onClick,
 }: SocialSignInButtonProps) => {
