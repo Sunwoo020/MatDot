@@ -1,7 +1,7 @@
 import { subNavigationList } from "..";
 
-export interface subNavigationListProps<T extends subNavigationList> {
+export interface subNavigationListProps {
   title: string;
-  icon: T;
+  icon: subNavigationList;
   path: string;
 }

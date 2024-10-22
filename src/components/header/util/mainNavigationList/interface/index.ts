@@ -1,6 +1,6 @@
 import { mainNavigationList } from "..";
 
-export interface mainNavigationListProps<T extends mainNavigationList> {
+export interface mainNavigationListProps {
   title: string;
-  icon: T;
+  icon: mainNavigationList;
 }
