@@ -1,94 +1,75 @@
-import { axiosInstance } from "@utils/axios";
-import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import KakaoProvider from "next-auth/providers/kakao";
 import NaverProvider from "next-auth/providers/naver";
+import { axiosInstance } from "@utils/axios";
+import { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth/next";
 
-const ERROR_MESSAGES = {
-  INVALID_CREDENTIALS: "Invalid credentials",
-  AUTH_FAILED: "로그인에 실패하였습니다. 사용자 자격증명을 확인해주세요.",
-};
-
-async function authenticateUser(username: string, password: string) {
-  try {
-    const { data } = await axiosInstance.post(
-      "/auth/login",
-      {},
-      {
-        auth: {
-          username,
-          password,
-        },
-      }
-    );
-    return data;
-  } catch (error) {
-    // console.error("Failed to authenticate user:", error);
-    throw new Error(ERROR_MESSAGES.AUTH_FAILED);
-  }
-}
-
-const PROVIDER_CONFIGS = {
-  NAVER: {
-    clientId: process.env.NAVER_CLIENT_ID!,
-    clientSecret: process.env.NAVER_CLIENT_SECRET!,
-  },
-  KAKAO: {
-    clientId: process.env.KAKAO_CLIENT_ID!,
-    clientSecret: process.env.KAKAO_CLIENT_SECRET!,
-  },
-};
-
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: "Da-Niim",
+      name: "MatDot",
       credentials: {
         username: {
           label: "이메일",
-          type: "text",
-          placeholder: "이메일 주소 입력 요망",
         },
         password: { label: "비밀번호", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials) {
-          throw new Error(ERROR_MESSAGES.INVALID_CREDENTIALS);
+          throw new Error("Invalid credentials");
         }
 
-        const data = await authenticateUser(
-          credentials.username,
-          credentials.password
-        );
-        if (data) {
-          return { ...data, accessToken: data.accessToken };
+        try {
+          const { data } = await axiosInstance.post(
+            "/",
+            // "/auth/login",
+            /* 로그인 주소, 지금은 안됨 */
+
+            {
+              auth: {
+                username: credentials.username,
+                password: credentials.password,
+              },
+            }
+          );
+          return data ? { ...data, accessToken: data.accessToken } : null;
+        } catch (error) {
+          console.error("Authorization error:", error);
+          throw new Error("Failed to authenticate user");
         }
-        return null;
       },
     }),
-    NaverProvider(PROVIDER_CONFIGS.NAVER),
-    KakaoProvider(PROVIDER_CONFIGS.KAKAO),
+    NaverProvider({
+      clientId: process.env.NAVER_CLIENT_ID!,
+      clientSecret: process.env.NAVER_CLIENT_SECRET!,
+    }),
+    KakaoProvider({
+      clientId: process.env.KAKAO_CLIENT_ID!,
+      clientSecret: process.env.KAKAO_CLIENT_SECRET!,
+    }),
   ],
   callbacks: {
-    async jwt({ token, user }): Promise<any> {
+    async jwt({ token, user }) {
       if (user) {
         token.accessToken = user.accessToken;
       }
       return token;
     },
-    async session({ session, token }): Promise<any> {
+    async session({ session, token }) {
       session.user = token;
       session.accessToken = token.accessToken;
       return session;
     },
-    async redirect({ baseUrl }): Promise<string> {
+    async redirect({ baseUrl }) {
       return baseUrl;
     },
   },
   pages: {
     signIn: "/login",
-    signOut: "/login",
+    signOut: "/",
   },
-});
+};
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
