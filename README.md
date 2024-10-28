@@ -1,5 +1,6 @@
 # MatDot
 ## 네이버 지도 api 연결을 활용해서 나만의 맛집 리스트 만들고 공유 하는 웹 사이트
+
 ### Stack
 - Next.js 14 App Router
 - TypeScript
